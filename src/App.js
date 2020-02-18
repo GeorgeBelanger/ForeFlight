@@ -80,32 +80,37 @@ const App = () => {
 
     return (
         <div className='mainContainer'>
-            <section className='sectionContainers'>
-                <input onChange={(event) => filterFeatures(event.target.value)} placeholder='search'/>
-                <table>
-                    <thead>
-                        <tr>
-                            <th className='blue' onClick={() => sortColumns('id')}>Station Id</th>
-                            <th className='blue' onClick={() => sortColumns('fltcat')}>Flight Category</th>
-                            <th className='blue' onClick={() => sortColumns('obsTime')}>Observation Time</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { filterValue ? 
-                        filteredFeatureProperties.map((featureProperty, key) =>
-                            <FeatureRow featureProperties={featureProperty} showDetailForThisFeature={showDetailForThisFeature} key={key} />
-                        ) : allFeatureProperties.map((featureProperty, key) =>
-                            <FeatureRow featureProperties={featureProperty} showDetailForThisFeature={showDetailForThisFeature} key={key} />
-                        ) }
-                    </tbody>
-                </table>
-            </section>
-            <section className='sectionContainers'>
-                {currentFeature ? 
-                    JSON.stringify(currentFeature, null, 4)
-                : 'Click a station id to see details!'
-                }
-            </section>
+            { allFeatureProperties.length ? 
+                <React.Fragment>
+                    <section className='sectionContainers'>
+                        <input onChange={(event) => filterFeatures(event.target.value)} placeholder='search'/>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th className='blue' onClick={() => sortColumns('id')}>Station Id</th>
+                                    <th className='blue' onClick={() => sortColumns('fltcat')}>Flight Category</th>
+                                    <th className='blue' onClick={() => sortColumns('obsTime')}>Observation Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                { filterValue ? 
+                                filteredFeatureProperties.map((featureProperty, key) =>
+                                <FeatureRow featureProperties={featureProperty} showDetailForThisFeature={showDetailForThisFeature} key={key} />
+                                ) : allFeatureProperties.map((featureProperty, key) =>
+                                <FeatureRow featureProperties={featureProperty} showDetailForThisFeature={showDetailForThisFeature} key={key} />
+                                ) }
+                            </tbody>
+                        </table>
+                    </section>
+                    <section className='sectionContainers'>
+                        {currentFeature ? 
+                            JSON.stringify(currentFeature, null, 4)
+                            : 'Click a station id to see details!'
+                        }
+                    </section>
+                </React.Fragment>
+                : <div>Loading...</div>
+            }
         </div>
     );
 };
