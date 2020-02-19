@@ -83,7 +83,7 @@ const App = () => {
             { allFeatureProperties.length ? 
                 <React.Fragment>
                     <section className='sectionContainers'>
-                        <input onChange={(event) => filterFeatures(event.target.value)} placeholder='search'/>
+                        <input inputProps={{ "data-testid": "search" }} onChange={(event) => filterFeatures(event.target.value)} placeholder='search'/>
                         <table>
                             <thead>
                                 <tr>

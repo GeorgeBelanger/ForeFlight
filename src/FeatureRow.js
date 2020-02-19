@@ -5,9 +5,9 @@ const FeatureRow = ({featureProperties, showDetailForThisFeature}) => {
 
     return (
         <tr>
-            <td onClick={() => showDetailForThisFeature(featureProperties.rawOb)} className='featureRowTd blue'>{featureProperties.id}</td>
-            <td className='featureRowTd'>{featureProperties.fltcat}</td>
-            <td className='featureRowTd'>{featureProperties.obsTime}</td>
+            <td aria-label='Station Id' onClick={() => showDetailForThisFeature(featureProperties.rawOb)} className='featureRowTd blue'>{featureProperties.id}</td>
+            <td aria-label='Flight Category' className='featureRowTd'>{featureProperties.fltcat}</td>
+            <td aria-label='Observation Timestamp' className='featureRowTd'>{featureProperties.obsTime}</td>
         </tr>
     );
 };
